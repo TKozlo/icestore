@@ -1,0 +1,89 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">Catalog</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            {% for category in categories %}
+            <p class="m-0">
+                <a class="text-white" href="{% url 'products:category' category.id %}">{{ category.name }}</a>
+            </p>
+            <i class="fa fa-circle px-3"></i>
+            {% endfor %}
+            <p class="m-0"><a class="text-white" href="{% url 'products:index' %}">All</a></p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Products Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h1 class="section-title position-relative text-center mb-5">Best Prices We Offer For Ice Cream Lovers</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            {% for product in object_list %}
+            <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                        <h4 class="font-weight-bold text-white mb-0">{{ product.price }}$</h4>
+                    </div>
+                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                        <img class="rounded-circle w-100 h-100" src="{{ product.image.url }}" style="object-fit: cover;">
+                    </div>
+                    <h4 class="font-weight-bold mb-4">{{product.name}}</h4>
+                    <h6 class="font-weight-bold mb-4">{{product.description}}</h6>
+                    <a href="{% url 'products:basket_add' product.id %}" class="btn btn-sm btn-secondary">In Cart</a>
+                </div>
+            </div>
+            {% endfor %}
+            
+        
+
+            <div class="col-12 text-center">
+                
+                {% if is_paginated %}          
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
+                            <a class="page-link"
+                               href="{% if page_obj.has_previous %} {% url 'products:paginator' page_obj.previous_page_number %} {% else %} # {% endif %}"
+                               tabindex="-1" aria-disabled="true">
+                                forward
+                            </a>
+                        </li>
+                        {% for page in paginator.page_range %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'products:paginator' page %}">
+                                    {{ page }}                           
+                                </a>
+                            </li>
+                        {% endfor %}
+                        <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                            <a class="page-link"
+                               href=" {% if page_obj.has_next %} {% url 'products:paginator' page_obj.next_page_number %} {% else %} # {% endif %}">
+                                next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Products End -->
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <h1 class="section-title position-relative text-center mb-5">WEATHER IN THE CITY</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="row justify-content-center">
+            <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text" placeholder="Enter City" name="city">
+            </div>
+            <div>
+                <button type="submit">Find</button></div>           
+            </div>
+            </form>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-4" style="min-height: 100px;">
+                <div class="position-relative h-100 rounded overflow-hidden">
+                    <img class="position-absolute w-100 h-20" src="http://openweathermap.org/img/w/{{ icon }}.png" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-4 py-5">
+                <h4 class="font-weight-bold mb-3">{{ city }}</h4>
+                <h5 class="text-muted mb-3">{{ day }}</h5>
+                <h5 class="text-muted mb-3">{{ description }}</h5>
+                <h5 class="text-muted mb-3">temp: {{ temp }} °С</h5>
+                <h5 class="text-muted mb-3">wind: {{ wind }} m/s</h5>
+                <h5 class="text-muted mb-3">pressure: {{ pressure }} Pa</h5>
+                <h5 class="text-muted mb-3">humidity: {{ humidity }} %</h5>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

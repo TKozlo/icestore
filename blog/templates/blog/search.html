@@ -1,0 +1,62 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="row justify-content-center">
+    
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+        <div class="border-top" style="border-top: 1px solid #40c4ff;"></div>
+        <div class="row ">
+           
+
+                {% for post in posts %}
+                <div class="col-lg-4 py-5">
+                    <div class="single-post">
+
+                        {% if post.photo %}
+                        <img class="rounded-circle w-100 h-100 bg-light p-3" src="{{ post.photo.url }}"  style="object-fit: cover;">
+                        {% else %}
+                        <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'img/service-1.jpg' %}" style="object-fit: cover;">
+                        {% endif %}
+
+                        <h3><a href="{% url 'blog:post' post.slug %}">{{ post.title }}</a></h3>
+                     
+                        {{ post.content|truncatewords_html:20|safe }}
+                        <i class="fa fa-circle px-3"></i>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Nothing...</p>
+                {% endfor %}
+            
+        </div>
+        </div>
+    </div>
+    
+
+    {% if page_obj.has_other_pages %}
+    <div class="pegination">
+        <div class="nav-links">
+
+            {% for p in page_obj.paginator.page_range %}
+                {% if page_obj.number == p %}
+                <span class="page-numbers current">{{ p }}</span>
+                {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                <a class="page-numbers" href="?{{ s }}page={{ p }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="page-numbers" href="?{{ s }}page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+  <div class="container py-5">
+      <div class="row">
+          <div class="col-lg-6">
+              <h1 class="section-title position-relative mb-5"><h2>Exchange rates for {{ date_html }}</h2><br></h1>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0">
+            <table class="table">
+              <thead class="table-active">
+                <tr>
+                  <th>Currency</th>
+                  <th>Purchase</th>
+                  <th>Sale</th>
+                  <th>National bank</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>USD</th>
+                  <td>{{ dollar_buy }}</td>
+                  <td>{{ dollar_sale }}</td>
+                  <td>{{ dollar_nb }}</td>
+                </tr>
+                <tr>
+                  <th>EURO</th>
+                  <td>{{ euro_buy }}</td>
+                  <td>{{ euro_sale }}</td>
+                  <td>{{ euro_nb }}</td>
+                </tr>
+                <tr>
+                 <th>10 Zloty</th>
+                 <td>{{ zloty_buy }}</td>
+                 <td>{{ zloty_sale }}</td>
+                 <td>{{ zloty_nb }}</td>
+                </tr>
+               </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}

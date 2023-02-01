@@ -1,0 +1,10 @@
+[
+    {"model": "products.productcategory", "pk": 1, "fields": {"name": "Fruits", "description": "Apple, Grape, Pear, Pineapple and etc."}},
+    {"model": "products.productcategory", "pk": 2, "fields": {"name": "Berries", "description": "Strawberry, Blueberry, Blackberry,Lingonberry and etc."}}, 
+    {"model": "products.productcategory", "pk": 3, "fields": {"name": "Classic", "description": "Chocolate, Vanilla, Plombir"}}, 
+    {"model": "products.productcategory", "pk": 4, "fields": {"name": "Mix", "description": "Several flavors in one."}}, 
+    {"model": "products.productcategory", "pk": 5, "fields": {"name": "Unusual", "description": "Meet, Cheese, Tea and other intresting flavors."}}, 
+    {"model": "products.productcategory", "pk": 6, "fields": {"name": "Strong", "description": "Beer, Liquors, Whisky."}}]
+
+
+
