@@ -18,13 +18,16 @@ All actions should be executed from the source directory of the project and only
 Firstly, create and activate a new virtual environment:
      python3.10 -m venv ../venv
      ../venv/Scripts/activate
-
+     
+     
+Make your changes in the .env.example file and remove ".example" from the file name
 Install packages:
+
     pip install --upgrade pip
     pip install -r requirements.txt
 
-
-    Run project dependencies, migrations, fill the database with the fixture data etc.:
+Run project dependencies, migrations, fill the database with the fixture data etc.:
+    ./manage.py makemigrations
     ./manage.py migrate
     ./manage.py loaddata <path_to_fixture_files>
     ./manage.py runserver 
