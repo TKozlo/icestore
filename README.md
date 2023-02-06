@@ -27,6 +27,7 @@ Install packages:
     pip install -r requirements.txt
 
 Run project dependencies, migrations, fill the database with the fixture data etc.:
+
     ./manage.py makemigrations
     ./manage.py migrate
     ./manage.py loaddata <path_to_fixture_files>
